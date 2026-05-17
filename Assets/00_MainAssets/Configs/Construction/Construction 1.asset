@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9720dd819b8514bb271f807022d2dd, type: 3}
+  m_Name: Construction 1
+  m_EditorClassIdentifier: Assembly-CSharp::BuildConfig
+  icon: {fileID: 21300000, guid: b506a3b43045c0b49ad14f0339fb6956, type: 3}
+  builderName: Construction 1
+  baseIncome: 2000
+  buildCost: 10000
+  buildCostMultiplier: 1000
+  buildTime: 10
+  growIncome: 1000
+  harvestTime: 1
+  buildTimeMultiplier: 5
+  maxLevel: 10
