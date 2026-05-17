@@ -2,7 +2,7 @@ using R3;
 using System;
 using UnityEngine;
 
-public class IdleBuilderState: IState
+public class IdleBuilderState : IState
 {
     private BuilderEntity builder;
     private IBuilderView upgradeView;
@@ -24,15 +24,17 @@ public class IdleBuilderState: IState
         }).AddTo(builder);
         buildDispoable = builder.OnBuildCommand.Subscribe(_ =>
         {
-            if(builder.Level.Value < builder.Config.maxLevel)
+            var cost = Calculator.CalculateBuildCost(builder.Config, builder.Level.Value);
+            if (builder.Level.Value < builder.Config.maxLevel && ServiceLocator.Get<EconomySystem>().Gold.Value >= cost)
             {
+                ServiceLocator.Get<EconomySystem>().Gold.Value -= cost;
                 builder.Level.Value++;
             }
         }).AddTo(builder);
     }
     public void Update()
     {
-        if(!builder.IsMaxTomato())
+        if (!builder.IsMaxTomato())
         {
             cd += Time.deltaTime;
             if (cd >= Calculator.CalculateHarvestTime(builder.Config, builder.Level.Value))
@@ -42,7 +44,7 @@ public class IdleBuilderState: IState
             }
         }
     }
-    
+
     private void SpawnTomato()
     {
         var tomato = ServiceLocator.Get<TomatoPools>().TomatoPool.Get();
